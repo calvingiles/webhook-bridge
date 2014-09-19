@@ -1,3 +1,3 @@
 def translate_payload(request_dict):
-    payload = {'text': 'data_from_incoming'}
+    payload = {'text': str(request_dict)}
     return payload
