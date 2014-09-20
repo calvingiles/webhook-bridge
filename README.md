@@ -1,5 +1,31 @@
 # Project interpret
 
+`webhook-bridge` is a simple python micro service you can run on heroku to bridge two webhooks that don't agree on the formatting.
+
+The only bridge currently supported converts from ProdPad Ideas to Slack posts in the format of my liking. Want more? send me some [feedback](mailto:hello@untangleconsulting.io). Like it? [Let everyone know](https://twitter.com/calvingiles).
+
+The private details of your webhooks live only in the parametes of the url you post to in the first place - to use the hook requires no code changes whatsoever.
+
+## To use
+
+Push to heroku and find your `{heroku_app_name}.heroku.com`.
+
+Create an incoming webhook on slack and copy the url (I will call it `{slack_hook_url}` (something like `https://your-company.slack.com/services/hooks/incoming-webhook?token=jGIb86HJD35agksoHnn28`).
+
+Create an outgoing webhook on Prodpad and set the url to:
+
+`{heroku_app_name}.heroku.com/interpret_webhook?hook_url={slack_hook_url}`
+
+
+## Customising behaviour
+
+Change 'translator.translate_payload()` to modify the behaviour of the hook.
+
+## Feedback?
+
+Get in touch on [twitter](https://twitter.com/calvingiles), [email](mailto:hello@untangleconsulting.io) or by posting an [issue](https://github.com/calvingiles/webhook-bridge/issues) if you have any feedback or just want to say you like it.
+
+
 ## For develompent
 
 * Clone the repo
@@ -33,13 +59,3 @@ $ pip freeze > requirements.txt
 ```
 
 With a locally installed venv, start your app in a heroku-like manor with `foreman start web`.
-
-## API
-
-Set the outgoing webhook of a service to the url this is served on followed by `interpret_webhook`.
-
-Pass the destination webhook url as the `hook_url` parameter.
-
-Change the function `translator.translate_payload()` to convert the passed payload to the desired destination payload.
-
-POST json data.
