@@ -3,7 +3,7 @@ def translate_payload(payload_dict):
     title = payload_dict.get('title')
     web_url = payload_dict.get('web_url')
     display_name = payload_dict.get('creator', {}).get('display_name')
-    text = '<{web_url}|{display_name}> - {title}'
+    text = '<{web_url}|{title}> - submitted by {display_name}'
     text = text.format(title=title, web_url=web_url, display_name=display_name)
     if len(summary) > 0:
         summary = summary.replace('</p><p>', '\n')
