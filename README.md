@@ -1,4 +1,4 @@
-# Project interpret
+# webhook-bridge
 
 `webhook-bridge` is a simple python micro service you can run on heroku to bridge two webhooks that don't agree on the formatting.
 
