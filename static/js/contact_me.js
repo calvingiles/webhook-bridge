@@ -15,6 +15,7 @@ $(function() {
             bridge_hook_url = bridge_hook_url + "?"
             bridge_hook_url = bridge_hook_url + "email="
             bridge_hook_url = bridge_hook_url + email
+            bridge_hook_url = bridge_hook_url + "&"
             bridge_hook_url = bridge_hook_url + "destination_hook_url="
             bridge_hook_url = bridge_hook_url + encodeURIComponent(in_hook)
 
