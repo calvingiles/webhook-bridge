@@ -1,5 +1,9 @@
 from flask import Flask, jsonify, request
 import translator, postman, mailer
+import pymongo
+import db
+
+collection_name = 'user_data'
 
 
 app = Flask(__name__, static_url_path='')
@@ -12,9 +16,10 @@ def route_index():
 
 @app.route('/contact_me', methods=['POST'])
 def contact():
-    request_payload = request.get_json()
-    result = mailer.email_contact_details(request_payload)
-    return str(request_payload)
+    #request_payload = request.get_json()
+    #result = mailer.email_contact_details(request_payload)
+    result_dict = db.store_results(request.args, {}, {}, collection_name)
+    return ''
 
 
 @app.route('/bridge_webhook', methods=['POST'])

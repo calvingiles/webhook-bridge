@@ -12,16 +12,20 @@ $(function() {
             var email = $("input#email").val();
             var bridge_hook_url = "http://api.suspension.io"
             bridge_hook_url = bridge_hook_url + "/bridge_webhook"
-            bridge_hook_url = bridge_hook_url + "?"
-            bridge_hook_url = bridge_hook_url + "email="
-            bridge_hook_url = bridge_hook_url + email
-            bridge_hook_url = bridge_hook_url + "&"
-            bridge_hook_url = bridge_hook_url + "destination_hook_url="
-            bridge_hook_url = bridge_hook_url + encodeURIComponent(in_hook)
+            var bridge_hook_url_args = "?"
+            // bridge_hook_url = bridge_hook_url + "email="
+            // bridge_hook_url = bridge_hook_url + email
+            // bridge_hook_url = bridge_hook_url + "&"
+            bridge_hook_url_args = bridge_hook_url_args + "destination_hook_url="
+            bridge_hook_url_args = bridge_hook_url_args + encodeURIComponent(in_hook)
+            bridge_hook_url = bridge_hook_url + bridge_hook_url_args
+
+            var extra_args = "&" + "email=" + email
 
             $.ajax({
-                url: "/contact_me",
+                url: "/contact_me" + bridge_hook_url_args + extra_args,
                 type: "POST",
+                // contentType: "application/json",
                 data: {
                     in_hook: in_hook,
                     email: email
