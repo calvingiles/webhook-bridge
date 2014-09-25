@@ -14,6 +14,7 @@ def translate_payload(payload_dict):
         summary = summary.replace('</strong>', '*')
         summary = summary.replace('<em>', '_')
         summary = summary.replace('</em>', '_')
+        summary = summary.replace('&nbsp;', ' ')
 
         text = '{}\n{}'.format(text, summary)
     payload = {'text': text}
