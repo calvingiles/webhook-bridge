@@ -28,3 +28,10 @@ def webhook():
     translated_payload = translator.translate_payload(request_payload)
     posted = postman.post_payload(request.args['destination_hook_url'], translated_payload)
     return jsonify(posted)
+
+@app.route('/docker_slack', methods=['POST'])
+def webhook():
+    request_payload = request.get_json()
+    translated_payload = translator.translate_docker_to_slack(request_payload)
+    posted = postman.post_payload(request.args['destination_hook_url'], translated_payload)
+    return jsonify(posted)
